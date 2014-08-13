@@ -1,0 +1,15 @@
+<%= link_to 'Back', projects_path %>
+
+<div class="subject new">
+  <h2>Create Project</h2>
+
+  <%= form_for(:project, :url => project_path) do |f| %>
+  
+    <%= render(:partial => "form", :locals => {:f => f}) %>
+    
+    <div class="form-buttons">
+      <%= f.submit("Create Project") %>
+    </div>
+    
+  <% end %>
+</div>

@@ -1,0 +1,40 @@
+<%= link_to 'Back', projects_path %>
+
+<div class="project search">
+  <h2>Search Project</h2>
+
+  <%= form_tag(search_project_projects_path) do  %>
+  
+    <div class="field">
+
+  	  <%= text_field_tag :name %>
+  	</div>
+    <div class="form-buttons">
+      <%= submit_tag("Search Project") %>
+    </div>
+    
+  <% end %>
+  
+</div>
+<table class="listing" border = 1>
+  <tr>
+    <th>Name</th>
+    <th>Created at</th>
+    <th>Updated at</th>
+    <th>Tasks</th>
+    <th></th>
+  </tr>
+
+<% @projects.each do |project| %>
+  <tr>
+    <td><%= project.name %></td>
+    <td><%= project.created_at %></td>
+    <td><%= project.updated_at %></td>
+    <td><%= project.tasks.count %></td>
+    <td><%= link_to 'Show', project_path(project) %>
+    <%= link_to 'Edit', edit_project_path(project) %>
+    <%= link_to 'Destroy', project_path(project), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <%= link_to 'Tasks Details', project_tasks_path(project) %></td>
+  </tr>
+<% end %>
+</table>

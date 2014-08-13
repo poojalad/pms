@@ -1,0 +1,16 @@
+<%= link_to 'Show', project_path(@project) %>
+<%= link_to 'Back', projects_path %>
+
+<div class="subject edit">
+  <h2>Edit Project : '<%= @project.name%>'</h2>
+
+  <%= form_for(@project, :url=>project_path(@project)) do |f| %>
+  
+    <%= render(:partial => "form", :locals => {:f => f}) %>
+    
+    <div class="form-buttons">
+      <%= f.submit("Update Project") %>
+    </div>
+    
+  <% end %>
+</div>

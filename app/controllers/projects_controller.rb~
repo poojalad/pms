@@ -1,0 +1,92 @@
+class ProjectsController < ApplicationController
+  # GET /projects
+  # GET /projects.json
+  layout 'style'
+  
+  def index
+    @projects = Project.sorted
+		
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @projects }
+    end
+  end
+
+  # GET /projects/1
+  # GET /projects/1.json
+  def show  
+    @project = Project.find(params[:id])    
+  end
+
+  # GET /projects/new
+  # GET /projects/new.json
+  def new
+  	@users = User.all
+    @project = Project.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @project }
+    end
+  end
+
+  # GET /projects/1/edit
+  def edit
+    @project = Project.find(params[:id])
+  end
+
+  # POST /projects
+  # POST /projects.json
+  def create
+    @project = Project.new(params[:project])
+
+    if @project.save
+      redirect_to(projects_path) 
+      flash[:notice] = 'Project was successfully created.'
+    else
+      render('new')
+    end
+
+  end
+
+  # PUT /projects/1
+  # PUT /projects/1.json
+  def update
+    @project = Project.find(params[:id])
+    
+    if @project.update_attributes(params[:project])
+      redirect_to(projects_path)
+      flash[:notice] = 'Project was successfully updated.'
+    else
+      render('edit')
+    end
+    
+  end
+
+  # DELETE /projects/1
+  # DELETE /projects/1.json
+  def destroy
+    @project = Project.find(params[:id])
+    @project.destroy
+
+    respond_to do |format|
+      format.html { redirect_to projects_url }
+      format.json { head :no_content }
+    end
+  end
+  
+  def search
+  	@projects = Project.by_name
+  	respond_to do |format|
+      format.html 
+      format.json { render json: @project }
+    end
+  end
+  
+  def result
+  	@project = Project.find_by_name(params[:project]["name"])
+  	redirect_to(show_project_path(@project))
+  end
+  
+  
+end

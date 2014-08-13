@@ -1,0 +1,8 @@
+<%= render(:partial => 'shared/error_messages', :locals => {:object => @task})%>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+    <%#= text_field_tag :name %>
+  </div>
+

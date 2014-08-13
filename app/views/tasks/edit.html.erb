@@ -1,0 +1,16 @@
+<%= link_to 'Show', project_task_path(@task,@project) %>
+<%= link_to 'Back', project_tasks_path(@project) %>
+
+<div class="task edit">
+  <h2>Update Task</h2>
+
+  <%= form_for(:task, :url => project_tasks_path( @project,@task)) do |f| %>
+  
+    <%= render(:partial => 'form', :locals => {:f => f}) %>
+    
+    <div class="form-buttons">
+      <%= submit_tag("Update Task") %>
+    </div>
+    
+  <% end %>
+</div>

@@ -1,0 +1,15 @@
+<%= link_to 'Back', project_tasks_path(@project) %>
+
+<div class="task new">
+  <h2>Create Task</h2>
+
+  <%= form_for([@project,@task]) do |f| %>
+  
+    <%= render(:partial => 'form', :locals => {:f => f}) %>
+    
+    <div class="form-buttons">
+      <%= submit_tag("Create Task") %>
+    </div>
+    
+  <% end %>
+</div>

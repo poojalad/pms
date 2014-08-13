@@ -1,0 +1,28 @@
+<%= link_to("<< Back to Projects List", projects_path, :class => 'back-link') %><br/>
+<%= link_to 'New Task', new_project_task_path(@project), :class => 'action new' %><br/>
+<%= link_to 'Search Task', search_task_project_tasks_path(@project, @task) %>
+
+<h1>Listing tasks</h1>
+
+<table border = 1>
+  <tr>
+    <th>Name</th>
+    <th>Created at</th>
+    <th>Updated at</th>
+    <th></th>
+  </tr>
+
+<% @tasks.each do |task| %>
+  <tr>
+    <td><%= task.name %></td>
+    <td><%= task.created_at %></td>
+    <td><%= task.updated_at %></td>
+    <td><%= link_to 'Show',project_task_path(@project,task) %>
+    <%= link_to 'Edit', edit_project_task_path( @project,task) %>
+    <%= link_to 'Destroy', project_task_path(@project,task), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br/>
+
